@@ -1,0 +1,15 @@
+{
+  "meta": {
+    "version": "1",
+    "updated_at": "2024-06-14T12:37:50.166Z",
+    "created_at": "2024-06-14T12:38:48.918Z",
+    "pipelines": [
+      "dafdccd9-1557-490d-a142-0c30a64fd05c"
+    ]
+  },
+  "lookup": [
+    [
+      "src/com/ch/Camera3D.java"
+    ]
+  ]
+}
