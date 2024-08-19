@@ -12,8 +12,20 @@ import org.lwjgl.opengl.PixelFormat;
 import com.ch.math.Vector3f;
 import com.ch.voxel.World;
 
+/**
+ * Initializes an OpenGL display and sets up various graphics-related components,
+ * including shaders, textures, and camera settings. It then enters a rendering loop
+ * that updates and renders the scene based on user input and time delta.
+ */
 public class Main {
 	
+	/**
+	 * Initializes display and OpenGL, enters a loop for rendering, and then terminates
+	 * the program with exit status 0.
+	 *
+	 * @param args command-line arguments passed to the Java program, which can be accessed
+	 * within the `main` method.
+	 */
 	public static void main(String[] args) {
 		
 		initDisplay();
@@ -30,6 +42,10 @@ public class Main {
 //	private static Chunk[][][] ch;
 	private static World w;
 	
+	/**
+	 * Initializes display settings by setting the display mode to 1920x1080, creating a
+	 * new display with specific attributes, and enabling vertical synchronization.
+	 */
 	private static void initDisplay() {
 		try {
 			Display.setDisplayMode(new DisplayMode(1920, 1080));
@@ -41,6 +57,11 @@ public class Main {
 		}
 	}
 	
+	/**
+	 * Initializes OpenGL settings and objects for a 3D application. It sets clear color,
+	 * enables culling face and depth testing, loads shaders and textures, creates a
+	 * camera and world objects, and defines vertices and indices for a model.
+	 */
 	private static void initGL() {
 		
 		GL11.glClearColor(0.1f, 0.7f, 1f, 1);
@@ -83,6 +104,12 @@ public class Main {
 		
 	}
 	
+	/**
+	 * Initializes a timer and enters an infinite loop that updates, renders, and displays
+	 * the game state until the user closes the window or presses the escape key. It also
+	 * updates the title of the display window with information about FPS, memory usage,
+	 * and other relevant details.
+	 */
 	private static void loop() {
 		
 		Timer.init();
@@ -105,11 +132,25 @@ public class Main {
 		
 	}
 	
+	/**
+	 * Processes input and updates a character's position based on its transform. It calls
+	 * `c.processInput` to process user input, then uses the character's current position
+	 * from its transform to update its own position with `w.updatePos`.
+	 *
+	 * @param dt time elapsed since the last frame, used to update the game object's state
+	 * accordingly.
+	 */
 	private static void update(float dt) {
 		c.processInput(dt, 5, .3f);
 		w.updatePos(c.getTransform().getPos().getX(), c.getTransform().getPos().getY(), c.getTransform().getPos().getZ());
 	}
 
+	/**
+	 * Binds a shader and sets up uniform values for rendering a scene. It then calls a
+	 * method on an object named `w` to render the scene using the bound shader and camera
+	 * context, but does not iterate over any data structures or set colors as in previous
+	 * code.
+	 */
 	private static void render() {
 		
 //		Model.enableAttribs();
@@ -131,6 +172,16 @@ public class Main {
 //		Model.disableAttribs();
 	}
 	
+	/**
+	 * Terminates the Java program's execution with a specified status code. The `System.exit`
+	 * method is called, which causes the virtual machine to exit and return the given
+	 * integer value as its exit status. This allows the operating system to determine
+	 * how the program ended its execution.
+	 *
+	 * @param status 16-bit integer value that is passed to the operating system as the
+	 * process's termination status, indicating whether the program terminated normally
+	 * or abnormally.
+	 */
 	private static void exit(int status) {
 		System.exit(status);
 	}
